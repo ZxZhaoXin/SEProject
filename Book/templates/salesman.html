@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/default/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/default/bootstrap/css/index.css">
+    <link rel="stylesheet" href="/static/default/bootstrap/css/bootstrap-theme.min.css">
+    <script src="/static/default/js/jquery-1.12.4.min.js" ></script>
+    <script src="/static/default/bootstrap/js/bootstrap-3.3.7.min.js" ></script>
+    <title>Salesman System</title>
+    {%load staticfiles%}
+</head>
+
+<body>
+
+        <div class="navbar-fixed-top top" role="navigation" id="menu-nav">
+                    <div class="image-top">
+                        <img src="/static/images/movie.png" herf="/" height="90" width="100">
+                    </div>
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/"><b>UFly</b></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-brand-sub">Start Your Travel!</p>
+                    </div>
+
+                    <form class="nav-right" action="/">
+                        <button class="button button-highlight button-pill button-large">Home</button>
+                    </form>
+        </div>
+
+        <div class="wrap" style="overflow:scroll">
+            <div class="container" align="center">
+                <h1>Input flights information:</h1>
+                <br>
+                <br>
+
+            <form action="/insert_flight/" method="get">
+                    <label for="1"><font color="white">Flight ID:</font></label>  <input type="text" name="flightid" id='1'> <br>
+                    <label for="2"><font color="white">Takeoff Time: </font></label><input type="datetime-local" name="start_time" value="yyyy-mm-dd HH:MM:ss" id='2'> <br>
+        	    <label for="3"><font color="white">Land Time: </font></label><input type="datetime-local" name="end_time" id='3' value="yyyy-mm-dd HH:MM:ss"> <br>	
+        	    <label for="4"><font color="white">Source: </font></label><input type="text" name="start_city" id="4"> <br>	
+        	    <label for="5"><font color="white">Destination: </font></label><input type="text" name="end_city" id="5"> <br>	
+        	    <label for="6"><font color="white">Price: </font></label><input type="text" name="price" id="6"> <br>
+                <label for="7"><font color="white">Volume: </font></label><input type="text" name="volume" id="7"> <br>
+                <p><strong>{% for i in error_info%}{{i}}{% endfor %}</strong></p>	
+                    <div style="text-align:center">
+                        <button type="submit" class="button button-highlight button-pill button-large" value="Submit to Database">Submit to Database</button>                   
+                    </div>
+                    
+            </form>
+
+        <h1>Query the information of a flight:</h1>
+
+        <form action="/query_flight/" method="get">
+                <label for="8"><font color="white">Flight: </font></label><input type="text" name="flight" id="8"> <br>
+                <div style="text-align:center">
+                       <button type="submit" class="button button-highlight button-pill button-large" value="Check the flight">Check the flight</button>              
+                </div>
+                <br>
+                <br>
+                <br>
+                
+
+        </form>
+
+        </div>
+        </div>
+
+        <p>
+        {% if this_flight %}
+              <script>alert("Insert into MySQL! ")</script>    
+        {% endif %}
+        </p>
+
+
+</body>
+</html>

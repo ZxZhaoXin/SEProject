@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/default/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/default/bootstrap/css/index.css">
+    <link rel="stylesheet" href="/static/default/bootstrap/css/bootstrap-theme.min.css">
+    <script src="/static/default/js/jquery-1.12.4.min.js" ></script>
+    <script src="/static/default/bootstrap/js/bootstrap-3.3.7.min.js" ></script>
+    <title>Administrator System</title>
+    {%load staticfiles%}
+</head>
+
+<body>
+    <div class="navbar-fixed-top top" role="navigation" id="menu-nav">
+                <div class="image-top">
+                    <img src="/static/images/movie.png" herf="/" height="90" width="100">
+                </div>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/"><b>UFly</b></a>
+                </div>
+                <div class="navbar-header">
+                    <p class="navbar-brand-sub">Start your travel!</p>
+                </div>
+                <form class="nav-right" action="/">
+                        <button class="button button-highlight button-pill button-large">Home</button>
+                    </form>
+    </div>
+
+    <div class="wrap" style="overflow:scroll">
+            <div class="container" align="center">
+                <h1>Input user information:</h1>
+                <br>
+                <br>
+
+            <form action="/add_salesman/" method="get">
+                    <label for="1"><font color="white">Username:</font></label>  <input type="text" name="user_id" id='1'> <br>
+                    <label for="2"><font color="white">Password: </font></label><input type="password" name="password" id='2'> <br>
+                <label for="3"><font color="white">Mail: </font></label><input type="text" name="mail" id='3'> <br>    
+                <label for="4"><font color="white">Identity: </font></label><input type="text" name="identity" id="4"> <br> 
+                    <div style="text-align:center">
+                        <button type="submit" class="button button-highlight button-pill button-large" value="Submit to Database">Submit to Database</button>                   
+                    </div>
+                    
+            </form>
+
+        <h1>Query the information of a user:</h1>
+
+        <form action="/check_salesman/" method="get">
+                <label for="8"><font color="white">Username: </font></label><input type="text" name="user_id" id="8"> <br>
+                <div style="text-align:center">
+                       <button type="submit" class="button button-highlight button-pill button-large" value="Check the user">Check the user</button>              
+                </div>
+                <br>
+                <br>
+                <br>
+                
+
+        </form>
+
+        </div>
+        </div>
+
+        <p>
+        {% if add %}
+              <script>alert("Insert into MySQL! ")</script>    
+        {% endif %}
+        </p>
+    
+
+
+</body>
+
+
+</html>

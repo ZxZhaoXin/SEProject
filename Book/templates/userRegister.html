@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang = "zh-hans">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="/static/default/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/static/default/bootstrap/css/index.css">
+        <link rel="stylesheet" href="/static/default/bootstrap/css/bootstrap-theme.min.css">
+        <script src="/static/default/js/jquery-1.12.4.min.js" ></script>
+        <script src="/static/default/bootstrap/js/bootstrap-3.3.7.min.js" ></script>
+        <title>Register</title>
+    </head>
+
+<body>
+        <div class="navbar-fixed-top top" role="navigation" id="menu-nav">
+                <div class="image-top">
+                    <img src="/static/images/movie.png" herf="/" height="90" width="100">
+                </div>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/"><b>UFly</b></a>
+                </div>
+                <div class="navbar-header">
+                    <p class="navbar-brand-sub">Start your travel!</p>
+                </div>
+        
+        
+            <!-- {% if request.session.islogin %}
+                        <form class="nav-right" action="account/logout/">
+                            <span style="color:#fff;margin-right:25px">Hello：{{ request.session.user_info.username }}</span>
+                            <button class="button button-highlight button-pill button-large">Logout</button>
+                        </form>
+                    {% else %}
+                        <div class="login-right">
+                            <form action = "../login/" >
+                                <button class="button button-highlight button-pill button-large">Login</button></form>
+                            </div>
+                        <div class="signup-right">
+                            <form action = "account/register/" >
+                            <button class="button button-highlight button-pill button-large">SignUp</button></form>
+                        </div>
+                    {% endif %} -->
+        </div>
+    <div class="wrap" style="overflow:scroll">
+        <div class="container">
+            <h1>注册新用户</h1>
+            <br>
+            <br>
+            <form class="form-inline" action = "." method = "post">
+                <div style="text-align:center ;color:#fff">
+                {% csrf_token %}
+                <p>用户名：{{regform.username}}</p>
+                <p>&nbsp;Email：{{regform.email}}</p>
+                <p>&nbsp;&nbsp;&nbsp;密码：{{regform.password}}</p>
+                <p>用户密码：{{regform.password2}}&nbsp;&nbsp;</p>
+                <p><strong>{% for i in error_info%}{{i}}{% endfor %}</strong></p>
+            
+                <button type = "submit" class="button button-highlight button-pill button-large">注册</button>
+                </div>
+            </form>
+        </div>
+        <br>
+        <div style="text-align:center;color:#dbdbdb">2019 &copy;Powered By Django</div>
+        <div style="text-align:center;color:#dbdbdb">
+            Email:Universe1@sjtu.edu.cn
+        </div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

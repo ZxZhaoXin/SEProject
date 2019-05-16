@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/default/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/default/bootstrap/css/index.css">
+    <link rel="stylesheet" href="/static/default/bootstrap/css/bootstrap-theme.min.css">
+    <script src="/static/default/js/jquery-1.12.4.min.js" ></script>
+    <script src="/static/default/bootstrap/js/bootstrap-3.3.7.min.js" ></script>
+    <title>User Management</title>
+    {%load staticfiles%}
+</head>
+
+<body>
+<div class="navbar-fixed-top top" role="navigation" id="menu-nav">
+                    <div class="image-top">
+                        <img src="/static/images/movie.png" herf="/" height="90" width="100">
+                    </div>
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/"><b>UFly</b></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-brand-sub">Start your travel!</p>
+                    </div>
+
+        </div>
+
+        <div class="wrap" style="overflow:scroll">
+		<div class="container" align="center">
+		<p>You searched for: <strong>{{ query }}</strong></p>
+		{% if user %}
+		    <p><strong>Found {{ user|length }} user(s).</strong></p><br>
+		    </div>
+		    <div class="container" align="center">
+				 <table class="table">
+				 	<tr>
+				        <td><input name="noname" value="novalue" type="hidden"></td>
+				       	<td>Username</td>
+				       	<td>PasswordHash</td>
+				       	<td>Mail</td>
+				       	<td>Identity</td>
+				       	<td>Change</td>
+				       	<td>Delete</td>
+				       	<td><input name="noname" value="novalue" type="hidden"></td>
+				    </tr>
+        {% for u in user %}
+	<tr>
+	<form action="/operate_salesman/" method="get">
+			<td><input name="search_word" value={{query}} type = "hidden"></td>
+			<td><input name="username" value={{u.username}} style="width:100px"></td>
+			<td><input name="password" value={{u.password}} style="width:100px"></td>
+			<td><input name="email" value={{u.email}} style="width:100px"></td>
+			<td><input name="identity" value={{u.identity}} style="width:100px"></td>
+			<td><button type="submit" value="change user" name="subject" class="button button-highlight button-pill">change</button></td>
+			<td><button type="submit" value="delete user" name="subject" class="button button-highlight button-pill">delete</button></td>
+			<td><input name="o_username" value={{u.username}} type = "hidden"></td>
+
+	</form>
+</tr>
+        
+
+        {% endfor %}
+        <form action="/administrator/" method="get"> 
+			<div style="text-align:center">
+  <button name="subject" type="submit" class="button button-highlight button-pill">return</button>
+  </div>
+</form>
+<br>
+    </table>
+		</div>
+    </div>
+{% else %}
+    <p>No user matched your search criteria.</p>
+    
+{% endif %}
+
+<p>
+<form action="/administrator/" method="get"> 
+  <button name="subject" type="submit" >return</button>
+</form>
+</p>
+
+<p>
+{%if delete %}
+     <script>alert("Delete successfully!")</script>
+{% endif %}
+</p>
+
+<p>
+{%if devise %}
+     <script>alert("Change successfully!")</script>
+{% endif %}
+</p>
+
+
+</body>
+</html>

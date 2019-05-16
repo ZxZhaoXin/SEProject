@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/default/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/default/bootstrap/css/index.css">
+    <link rel="stylesheet" href="/static/default/bootstrap/css/bootstrap-theme.min.css">
+    <script src="/static/default/js/jquery-1.12.4.min.js" ></script>
+    <script src="/static/default/bootstrap/js/bootstrap-3.3.7.min.js" ></script>
+    <title>UFly-DataBase</title>
+    {%load staticfiles%}
+</head>
+<body>
+
+ <div class="navbar-fixed-top top" role="navigation" id="menu-nav">
+        <div class="image-top">
+            <img src="static/images/movie.png" herf="/" height="90" width="100">
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><b>UFly</b></a>
+        </div>
+        <div class="navbar-header">
+            <p class="navbar-brand-sub">Start Your Travel!</p>
+        </div>
+
+
+    {% if request.session.islogin %}
+                <form class="nav-right" action="account/logout/">
+                    <span style="color:#fff;margin-right:25px">Hello：{{ request.session.user_info.username }}</span>
+                    <button class="button button-highlight button-pill button-large">Logout</button>
+                </form>
+            {% else %}
+                <div class="login-right">
+                    <form action = "account/login/" >
+                        <button class="button button-highlight button-pill button-large">Login</button></form>
+                    </div>
+                    <!-- 临时用于注册和登录的连接 -->
+                <div class="signup-right">
+                    <form action = "account/register/" >
+                    <button class="button button-highlight button-pill button-large">SignUp</button></form>
+                    <!--  -->
+                </div>
+            {% endif %}
+</div>
+
+<!--carousel-->
+<div id="ad-carousel" class="carousel slide" data-ride="carousel" style="height:800px">
+        <ol class="carousel-indicators">
+            <li data-target="#ad-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#ad-carousel" data-slide-to="1"></li>
+            <li data-target="#ad-carousel" data-slide-to="2"></li>
+
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active" style="height: 800px">
+                <img src="/static/images/wp1.jpg" alt="0 slide">
+
+                <div class="container" >
+                    <div class="carousel-caption"
+                        style="position: absolute; top: 250px;width:250px;margin-left:auto;margin-right:auto;">
+                        <h1>Welcome</h1>
+                        <h1>to</h1>
+                        <h1>SJTU-MyFly</h1>
+                    </div>
+                </div>
+
+            </div>
+            <div class="item" style="height: 800px">
+                <img src="/static/images/wp5.jpg" alt="1 slide">
+
+                <div class="container">
+                    <div class="carousel-caption"
+                        style="position: absolute; top: 250px;width:250px;margin-left:auto;margin-right:auto;">
+                        <h1>IN SKY</h1>
+                        <h1>WE TRUST</h1>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="item" style="height: 800px">
+                <img src="/static/images/wp4.jpg" alt="2 slide">
+
+                <div class="container">
+                    <div class="carousel-caption"
+                        style="position: absolute; top: 250px;width:250px;margin-left:auto;margin-right:auto;">
+                        <h1></h1>
+                        <h1><font size="12"></font></h1>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <a class="left carousel-control" href="#ad-carousel" data-slide="prev"><span
+            class="glyphicon glyphicon-chevron-left"></span></a> <a
+            class="right carousel-control" href="#ad-carousel" data-slide="next"><span
+            class="glyphicon glyphicon-chevron-right"></span></a>
+        <div style="position: absolute; left: 100px; top: 100px;"></div>
+</div>
+
+
+<!--conditional search-->
+{% if request.session.islogin %}
+<div class="main-pad-1" style="margin-left:20%">
+
+        
+            <form action="." method="post">
+								{% csrf_token %}
+                
+                    <div class="col-md-12">
+                        
+                            <div class="col-md-2">
+								<div class="col-md-3">From</div>
+								<div class="col-md-8">
+                                <div class="form-group">
+                                    <input type="text" name="departure" class="form-control" placeholder="From">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+								</div>
+                            </div><!-- end columns -->
+                            <div class="col-md-2">
+								<div class="col-md-3">To</div>
+								<div class="col-md-9">
+                                <div class="form-group">
+                                    <input type="text" name="destination" class="form-control" placeholder="To">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+								</div>
+                            </div><!-- end columns -->
+                        
+						
+							<div class="col-md-3">
+								<div class="col-md-3">Check In</div>
+								<div class="col-md-9">
+                            	<div class="form-group">
+                                	<input type="date" name="CheckIn" class="form-control dpd1" placeholder="Check In">
+                                	<i class="fa fa-calendar"></i>
+                            	</div>
+								</div>
+                        	</div><!-- end columns -->
+                            
+							<div class="col-md-2">
+							
+								<button type="submit" class="button button-highlight button-pill">Search</button>
+							
+                    		</div><!-- end columns -->
+                        
+                    </div><!-- end columns -->
+                    <div class="col-md-6">
+                        
+						
+                    </div><!-- end columns -->
+                    
+                    
+                
+            </form>
+        
+   
+</div>
+
+<div class="col-md-3"></div>
+<!-- 查找结果 -->
+<br>
+<hr class="simple" color="#141515"  size="3"/>
+<div class="title1">查找结果:&nbsp;&nbsp;&nbsp;
+    {% for i in choices %}
+        {{i}}
+    {% endfor %}
+</div>
+</br></br>
+<div>
+<div class="container">
+    <div class="row">
+        
+             <div>
+             <table class="table">
+                
+                
+                    <center><div style=" color:#eb1d0e">
+                    
+                    </div></center>
+                    <tr style="margin:10px">
+                        <td>&nbsp;&nbsp;&nbsp;航班号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;&nbsp;出发地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;&nbsp;目的地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;&nbsp;出发日期&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;&nbsp;出发时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    	<td>&nbsp;&nbsp;&nbsp;到达时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>票价</td>
+                        <td></td>
+                    </tr>
+                    {% for flight_list in flight_list_div%}
+                    {% for flight in flight_list %}
+                    <tr style="margin:5px">
+                        <form action = "base/info/" method="get">
+                        <td><input value={{flight.flight_number}} style="width: 80px" name="f1" readonly="readonly">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td><input value={{flight.departure}} style="width: 120px" name="f2" readonly="readonly">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td><input value={{flight.destination}} style="width: 120px" name="f3" readonly="readonly">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td><input value={{flight.check_in_date}} style="width: 120px" name="f4" readonly="readonly"></td>
+                        <td><input value={{flight.check_in_time}} style="width: 150px" name="f5" readonly="readonly">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    	<td><input value={{flight.check_out_time}} style="width: 150px" name="f6" readonly="readonly">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td><input value={{flight.price}} style="width: 80px" name="f7" readonly="readonly"></td>
+                        <td><button class="button button-highlight button-pill" type="submit">buy</button></td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                
+            </table> 
+            </div>
+
+            
+{% endif %}
+            <div style="text-align:center;color:#525050">2019 &copy;Powered By Django</div>
+        
+        
+    </div>
+</div>
+</body>
+</html>

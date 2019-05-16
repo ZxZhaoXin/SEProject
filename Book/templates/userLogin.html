@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/default/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/default/bootstrap/css/index.css">
+    <link rel="stylesheet" href="/static/default/bootstrap/css/bootstrap-theme.min.css">
+    <script src="/static/default/js/jquery-1.12.4.min.js" ></script>
+    <script src="/static/default/bootstrap/js/bootstrap-3.3.7.min.js" ></script>
+    <title>Login</title>
+</head>
+
+<body>
+        <div class="navbar-fixed-top top" role="navigation" id="menu-nav">
+                <div class="image-top">
+                    <img src="/static/images/movie.png" herf="/" height="90" width="100">
+                </div>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/"><b>UFly</b></a>
+                </div>
+                <div class="navbar-header">
+                    <p class="navbar-brand-sub">Start your travel!</p>
+                </div>
+        
+
+        </div>
+<div class="wrap" style="overflow:scroll">
+        <div class="container">
+            <h1>登录</h1>
+            <br>
+            <br>
+            <form class="form-inline" action="." method="post">
+                <div style="text-align:center ;color:#fff">
+                {% csrf_token %}
+                <p>用户名:{{lgform.username}}</p>
+                <br>
+                <p>密   码:{{lgform.password}}</p>
+                <br>
+                <p>Choose an identity: 
+                <div class="form-group">
+                	<input name="identity" id="1" type="radio" value="tourist" class="radio-inline" checked="checked"><label for="1">tourist</label>
+                	<input name="identity" id="2" type="radio" value="salesman" class="radio-inline"><label for="2">salesman</label>
+                	<input name="identity" id="3" type="radio" value="admin" class="radio-inline"><label for="3">admin</label>
+                </div>
+                </p>
+            <!-- <p><input type="text" name="username" placeholder="Username" ></p>
+            <p><input type="password" name="password" placeholder="Password" ></p> -->
+                <p><strong>{% for i in error_info%}{{i}}{% endfor %}</strong></p>
+                <br>
+                <br>
+                <button type="submit" class="button button-highlight button-pill button-large" >登录</button>
+                <br>
+                <p>没有账号？现在<a href="http://127.0.0.1:8000/account/register/">注册</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div style="text-align:center;color:#dbdbdb">2019 &copy;Powered By Django</div>
+        <div style="text-align:center;color:#dbdbdb">
+            Email:Universe1@sjtu.edu.cn
+        </div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    </body>
+</html>

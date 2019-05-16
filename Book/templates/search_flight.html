@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/default/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/default/bootstrap/css/index.css">
+    <link rel="stylesheet" href="/static/default/bootstrap/css/bootstrap-theme.min.css">
+    <script src="/static/default/js/jquery-1.12.4.min.js" ></script>
+    <script src="/static/default/bootstrap/js/bootstrap-3.3.7.min.js" ></script>
+    <title>Salesman System</title>
+    {%load staticfiles%}
+</head>
+
+<body>
+<div class="navbar-fixed-top top" role="navigation" id="menu-nav">
+                    <div class="image-top">
+                        <img src="/static/images/movie.png" herf="/" height="90" width="100">
+                    </div>
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/"><b>UFly</b></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-brand-sub">Start your travel!</p>
+                    </div>
+
+        </div>
+<div class="wrap" style="overflow:scroll">
+    <div class="container" align="center">
+                <h1>Search Results:</h1>
+                <br>
+                <br>
+				<p>You searched for: <strong>{{ query }}</strong></p>
+				{% if flight %}
+				    <p>Found {{ flight|length }} flight(s).</p></div>
+				    <div class="container" align="center">
+				       <table class="table">
+				       <tr>
+				        <td><input name="noname" value="novalue" type="hidden"></td>
+				       	<td>Flight</td>
+				       	<td>Price</td>
+				       	<td>Start Time</td>
+				       	<td>End Time</td>
+				       	<td>Start City</td>
+				       	<td>End City</td>
+				       	<td>Volume</td>
+				       	<td>Change</td>
+				       	<td>Delete</td>
+				       	<td><input name="noname" value="novalue" type="hidden"></td>
+				       </tr>
+				    
+				        {% for f in flight %}
+
+						    <tr>
+						    	<form action="/operate_flight/" method="get">
+						    	<td><input name="search_word" value={{query}} type = "hidden"></td>
+						        <td><input name="flight" value={{f.flightid}} style="width:100px"></td>
+								<td><input name="ticket_price" value={{f.price}} style="width:100px"></td>
+						        <td><input name="start_time" value={{f.starttime|date:"Y-m-d H:i:s"}} style="width:200px"></td>
+						        <td><input name="end_time" value={{f.endtime|date:"Y-m-d H:i:s"}} style="width:200px"></td>
+						        <td><input name="start_place" value={{f.startplace}}  style="width:100px"></td>
+						        <td><input name="end_place" value={{f.endplace}} style="width:100px"></td>
+						        
+						        <td><input name="volume" value={{f.volume}} style="width:100px"></td>
+						<td><button type="submit" value="change flight" name="subject" class="button button-highlight button-pill">change</button></td>
+			<td><button type="submit" value="delete flight" name="subject" class="button button-highlight button-pill">delete</button></td>
+			<td><input name="o_flightid" value={{f.flightid}} type = "hidden"></td>
+			</form>
+						    </tr> 
+						{% endfor %}
+			
+			<tr><form action="/form_salesman/" method="get"> 
+			<div style="text-align:center">
+  <button name="subject" type="submit" class="button button-highlight button-pill">return</button>
+  </div>
+</form></tr>
+
+			<br>
+			</table>
+		</div>
+      
+      </div>
+
+    
+{% else %}
+    <p>No flight matched your search criteria.</p>
+    <form action="/form_salesman/" method="get"> 
+			<div style="text-align:center">
+  <button name="subject" type="submit" class="button button-highlight button-pill">return</button>
+  </div>
+</form>
+{% endif %}
+</div>
+
+
+<p>
+{%if delete %}
+     <script>alert("Delete successfully!")</script>
+{% endif %}
+</p>
+
+<p>
+{%if change %}
+     <script>alert("Change successfully!")</script>
+{% endif %}
+</p>
+
+</body>
+</html>
